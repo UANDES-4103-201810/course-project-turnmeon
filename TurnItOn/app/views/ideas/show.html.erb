@@ -5,8 +5,11 @@
 <p>Estimated release date: <%= @idea.estimated_date %></p>
 <p>Goal amount: $<%= @idea.goal_amount %></p>
 <label for="cost1">How much do you want to fund?</label>
-<input type="cost" class="form-control" id="cost1" aria-describedby="emailHelp" placeholder="Enter amount"><a class="btn btn-primary m-1"  role="button">Fund it</a>
+<input type="cost" class="form-control" id="cost1" aria-describedby="emailHelp" placeholder="Enter amount"><a class="btn btn-primary m-1"  role="button">Fund this project!</a>
 <p>Category: <%= @idea.category %></p>
+
+<h1> Promise </h1>
+<%= image_tag('images.jpeg' , width: '150px')%>
 
 
 <h3>Comments:</h3>
