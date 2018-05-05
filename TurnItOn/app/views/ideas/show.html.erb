@@ -1,16 +1,21 @@
 <h1><%= @idea.title %></h1>
+<p>Created by <%= @idea.user.email  %> <%= time_ago_in_words(@idea.created_at) %> ago.</p>
 <h2><%= @idea.description %></h2>
 <p><%= @idea.estimated_date %></p>
 <p><%= @idea.goal_amount %></p>
 <p><%= @idea.category %></p>
-<!-- Add a posted at timestamp -->
+
+
 <h3>Comments:</h3>
 <%= render @idea.messages %>
 <h3>Comment this Idea:</h3>
 <%= render 'messages/form' %>
 
 <%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_idea_path(@idea) %>
-<%= link_to "Delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" } %>
-
+<% if user_signed_in? %>
+	<% if @idea.user_id == current_user.id %>
+		<%= link_to "Edit", edit_idea_path(@idea) %>
+		<%= link_to "Delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" } %>
+	<% end %>
+<% end %>
 

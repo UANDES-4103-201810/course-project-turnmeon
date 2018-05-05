@@ -1,3 +1,9 @@
-<p><%= message.content %></p>
-<%= link_to "Edit", edit_idea_message_path(message.idea, message) %>
-<%= link_to "Delete", idea_message_path(message.idea, message), method: :delete, data: { confirm: "Delete this comment?" } %>
+<h4><%= message.content %></h4>
+<p>Posted by <%= message.user.email %> <%= time_ago_in_words(message.created_at) %> ago.</p>
+<% if user_signed_in? %>
+	<% if message.user_id == current_user.id %>
+		<%= link_to "Edit", edit_idea_message_path(message.idea, message) %>
+		<%= link_to "Delete", idea_message_path(message.idea, message), method: :delete, data: { confirm: "Delete this comment?" } %>
+	<% end %>
+<% end %>
+

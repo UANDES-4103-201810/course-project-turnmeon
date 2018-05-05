@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 	before_action :find_idea
 	before_action :find_message, only: [:edit, :update, :destroy]
+	before_action :authenticate_user!
 	def create
 		@message = @idea.messages.create(message_params)
 		@message.user_id = current_user.id
