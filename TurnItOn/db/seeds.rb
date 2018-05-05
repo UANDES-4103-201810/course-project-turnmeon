@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Idea.create(title:"iPhone X", description: 'Newest Apple product in the market!', estimated_date: nil, goal_amount: 10000, category:'Technology', user_id: 1)
