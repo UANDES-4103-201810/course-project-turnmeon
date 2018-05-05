@@ -1,7 +1,10 @@
+<div class="container">
+<h1>Projects</h1>
 <% @ideas.each do |idea| %>
 	<h2><%= idea.title %></h2>
 	<%= link_to "View Idea", idea_path(idea), class: "btn btn-default" %>
 <% end %>
+</div>
 
 
 

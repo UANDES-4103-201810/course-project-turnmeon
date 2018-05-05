@@ -1,14 +1,15 @@
+<div class="container">
 <h1><%= @idea.title %></h1>
 <p>Created by <%= @idea.user.email  %> <%= time_ago_in_words(@idea.created_at) %> ago.</p>
 <h2><%= @idea.description %></h2>
-<p><%= @idea.estimated_date %></p>
-<p><%= @idea.goal_amount %></p>
-<p><%= @idea.category %></p>
+<p>Estimated release date<%= @idea.estimated_date %></p>
+<p>Goal amount: $<%= @idea.goal_amount %></p>
+<p>Category: <%= @idea.category %></p>
 
 
 <h3>Comments:</h3>
 <%= render @idea.messages %>
-<h3>Comment this Idea:</h3>
+<h3>_______________________________________________________________________________________</h3>
 <%= render 'messages/form' %>
 
 <%= link_to "Back", root_path %>
@@ -18,4 +19,4 @@
 		<%= link_to "Delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" } %>
 	<% end %>
 <% end %>
-
+</div>
