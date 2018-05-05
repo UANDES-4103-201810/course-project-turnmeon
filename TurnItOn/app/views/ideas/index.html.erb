@@ -1,9 +1,7 @@
 <% @ideas.each do |idea| %>
 	<h2><%= idea.title %></h2>
 	<%= link_to "View Idea", idea_path(idea), class: "btn btn-default" %>
-	
 <% end %>
 
-<%= link_to "New Idea", new_idea_path %>
 
 
