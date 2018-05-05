@@ -3,9 +3,14 @@
 <p><%= @idea.estimated_date %></p>
 <p><%= @idea.goal_amount %></p>
 <p><%= @idea.category %></p>
+<!-- Add a posted at timestamp -->
+<h3>Comments:</h3>
+<%= render @idea.messages %>
+<h3>Comment this Idea:</h3>
+<%= render 'messages/form' %>
 
 <%= link_to "Back", root_path %>
 <%= link_to "Edit", edit_idea_path(@idea) %>
 <%= link_to "Delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" } %>
-<!-- Add a posted at timestamp -->
+
 

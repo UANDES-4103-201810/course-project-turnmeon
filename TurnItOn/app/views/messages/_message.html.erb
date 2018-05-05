@@ -1,0 +1,3 @@
+<p><%= message.content %></p>
+<%= link_to "Edit", edit_idea_message_path(message.idea, message) %>
+<%= link_to "Delete", idea_message_path(message.idea, message), method: :delete, data: { confirm: "Delete this comment?" } %>
