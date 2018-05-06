@@ -3,30 +3,38 @@
   <head>
     <title>TurnItOn</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-	<div class="navbar navbar-default"> 
+	<nav class="navbar navbar-inverse navbar-fixed-top"> 
 		<div class="container">
 			<div class="navbar-header">
-				<%=link_to "Turn It On!", root_path, class: "navbar-brand"%> 
+				<%=link_to "Turn It On!", root_path, class: "navbar-brand"%>
 			</div> 
-			<ul class="nav navbar-right">
-				<li><%= link_to "Sing Up", new_user_registration_path %></li>
+			<ul class="nav navbar-nav">
+				<li><%= link_to "About Us", root_path %> </li>
 				<% if user_signed_in? %>
-					<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: { confirm: "Do you want to sign out?" } %></li>
+					<li><%= link_to "New Idea", new_idea_path %></li>
+				<% end %>	
+			</ul>	
+			<ul class="nav navbar-nav navbar-right">
+				<% if user_signed_in? %>
+					<li><%= link_to current_user.email, root_path %></li>
+				<% end %>
+				
+				<% if user_signed_in? %>
+					<li><%= link_to "Log Out", destroy_user_session_path, method: :delete, data: { confirm: "Do you want to log out?" } %></li>
+					
 				<% else %>
 					<li><%= link_to "Log In", new_user_session_path %> </li>
+					<li><%= link_to "Sing Up", new_user_registration_path %></li>
 				<% end %>
-			</ul>
-			<% if user_signed_in? %>
-				<p><%= link_to "New Idea", new_idea_path, class: "nav navbar-nav navbar-text navbar-link" %></p>
-			<% end %>
+					
+			</ul>		
 		</div>
-	</div>
+	</nav>
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 
