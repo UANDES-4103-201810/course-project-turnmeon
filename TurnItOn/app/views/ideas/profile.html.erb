@@ -1,0 +1,20 @@
+<h1>Your Ideas</h1>
+
+<% @ideas.each do |idea| %>
+	<div class="col-md-3">
+		<% if user_signed_in? %>
+			<% if idea.user_id == current_user.id%>
+				<h2><%= idea.title %></h2>
+				<p>Created by you <%= time_ago_in_words(idea.created_at) %> ago.</p>
+				<%= link_to "View Idea", idea_path(idea), class: "btn btn-default" %>
+				<%= link_to "Edit", edit_idea_path(idea), class: "btn btn-default" %>
+				<%= link_to "Delete", idea_path(idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
+
+
+
+
+

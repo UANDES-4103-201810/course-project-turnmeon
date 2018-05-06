@@ -5,7 +5,14 @@ class IdeasController < ApplicationController
 	def show
 	end
 
+	def aboutus
+	end
+
 	def index
+		@ideas = Idea.all.order("created_at DESC")
+	end
+
+	def profile
 		@ideas = Idea.all.order("created_at DESC")
 	end
 

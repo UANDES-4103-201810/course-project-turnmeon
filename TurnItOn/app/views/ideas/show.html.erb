@@ -7,20 +7,21 @@
 	<% end %>
 <% end %>
 <p>Created by <%= @idea.user.email  %> <%= time_ago_in_words(@idea.created_at) %> ago.</p>
-<h2><%= @idea.description %></h2>
+<h3><%= @idea.description %></h3>
 <p>Estimated release date: <%= @idea.estimated_date %></p>
 <p>Goal amount: $<%= @idea.goal_amount %></p>
+<h3> Funding </h3>
 <label for="cost1">How much do you want to fund?</label>
 <input type="cost" class="form-control" id="cost1" aria-describedby="emailHelp" placeholder="Enter amount"><a class="btn btn-primary m-1"  role="button">Fund this project!</a>
 <p>Category: <%= @idea.category %></p>
 
-<h1> Promise </h1>
+<h3> Promises </h3>
 <%= image_tag('images.jpeg' , width: '150px')%>
 
 
-<h3>Comments:</h3>
+<h3>Comments</h3>
 <%= render @idea.messages %>
-<h3>_______________________________________________________________________________________</h3>
+
 <%= render 'messages/form' %>
 
 </div>
