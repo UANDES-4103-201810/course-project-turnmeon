@@ -13,7 +13,7 @@
 <h3> Funding </h3>
 <label for="cost1">How much do you want to fund?</label>
 <input type="cost" class="form-control" id="cost1" aria-describedby="emailHelp" placeholder="Enter amount"><a class="btn btn-primary m-1"  role="button">Fund this project!</a>
-<p>Category: <%= @idea.category %></p>
+<p>Category: <%= @idea.category.name %></p>
 
 <h3> Promises </h3>
 <%= image_tag('images.jpeg' , width: '150px')%>
