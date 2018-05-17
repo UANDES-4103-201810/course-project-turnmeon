@@ -2,9 +2,9 @@
 <%= simple_form_for @idea do |f| %>
 	<%= f.input :title, label: "Idea title" %>
 	<%= f.input :description %>
+	<%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select category") %>
 	<%= f.input :estimated_date %>
 	<%= f.input :goal_amount %>
-	<%= f.input :category %>
 	<%= f.button :submit %>
 <% end %>
 </div>

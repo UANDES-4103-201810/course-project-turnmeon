@@ -1,6 +1,6 @@
 class IdeasController < ApplicationController
 	before_action :find_idea, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index, :show, :aboutus]
 	
 	def show
 	end
@@ -18,10 +18,12 @@ class IdeasController < ApplicationController
 
 	def new
 		@idea = current_user.ideas.build
+		@categories = Category.all.map{|k| [k.name, k.id]}
 	end
 
 	def create
 		@idea = current_user.ideas.build(idea_params)
+		@idea.category_id = params [:category_id]
 	 	if @idea.save
 			redirect_to root_path
 		else
