@@ -38,6 +38,7 @@ class IdeasController < ApplicationController
 	end
 
 	def edit
+		@categories = Category.all.map{|k| [k.name, k.id]}	
 	end	
 
 	def update
