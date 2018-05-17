@@ -9,7 +9,13 @@ class IdeasController < ApplicationController
 	end
 
 	def index
-		@ideas = Idea.all.order("created_at DESC")
+		if params[:category].blank?			
+			@ideas = Idea.all.order("created_at DESC")
+		else
+			@category_id = Category.find_by(name: params[:category]).id
+			@ideas = Idea.where(:category_id => @category_id).order("created_at DESC")
+		end
+
 	end
 
 	def profile
@@ -23,7 +29,7 @@ class IdeasController < ApplicationController
 
 	def create
 		@idea = current_user.ideas.build(idea_params)
-		@idea.category_id = params [:category_id]
+		@idea.category_id = params[:category_id]
 	 	if @idea.save
 			redirect_to root_path
 		else
