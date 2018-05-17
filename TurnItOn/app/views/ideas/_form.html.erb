@@ -1,8 +1,9 @@
 <div class="container">
 <%= simple_form_for @idea, :html => { :multipart => true } do |f| %>
+	<%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select category") %>
+	<%= f.file_field :idea_image %>
 	<%= f.input :title, label: "Idea title" %>
 	<%= f.input :description %>
-	<%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select category") %>
 	<%= f.input :estimated_date %>
 	<%= f.input :goal_amount %>
 	<%= f.button :submit %>
