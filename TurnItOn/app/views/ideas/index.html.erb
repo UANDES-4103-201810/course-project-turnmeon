@@ -1,5 +1,7 @@
-
-<h1 class="current-category"> Category: <%= params[:category] %></h1>
+<h1> Ideas </h1>
+<% if params[:category] != nil %>
+	<h4 class="current-category"> Category: <%= params[:category] %></h4>
+<% end %>
 <% if @ideas.count == 0 %>
 	<h1> There are no ideas currently in this category </h1>
 <% else %>
