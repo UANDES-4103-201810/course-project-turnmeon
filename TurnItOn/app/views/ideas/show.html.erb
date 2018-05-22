@@ -1,27 +1,36 @@
-<div class="container">
-<h1><%= @idea.title %></h1>
-<% if user_signed_in? %>
-	<% if @idea.user_id == current_user.id or current_user.email == "admin@hotmail.com"%>
-		<%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-default" %>
-		<%= link_to "Delete", idea_path(@idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
-	<% end %>
-<% end %>
-<p>Created by <%= @idea.user.email  %> <%= time_ago_in_words(@idea.created_at) %> ago.</p>
-<h3><%= @idea.description %></h3>
-<p>Estimated release date: <%= @idea.estimated_date %></p>
-<p>Goal amount: $<%= @idea.goal_amount %></p>
-<h3> Funding </h3>
-<label for="cost1">How much do you want to fund?</label>
-<input type="cost" class="form-control" id="cost1" aria-describedby="emailHelp" placeholder="Enter amount"><a class="btn btn-primary m-1"  role="button">Fund this project!</a>
-<p>Category: <%= @idea.category.name %></p>
-
-<h3> Promises </h3>
-<%= image_tag('images.jpeg' , width: '150px')%>
+<div class="row">
+	<div class="col-md-4">
+		<%= image_tag @idea.idea_image.url(:idea_show) %>
+	</div>
+	<div class="col-md-8">
+		<h1><%= @idea.title %></h1>
+		<% if user_signed_in? %>
+			<% if @idea.user_id == current_user.id or current_user.email == "admin@hotmail.com"%>
+				<%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-default" %>
+				<%= link_to "Delete", idea_path(@idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+			<% end %>
+		<% end %>
+		
 
 
-<h3>Comments</h3>
-<%= render @idea.messages %>
+		<p>Created by <%= @idea.user.email  %> <%= time_ago_in_words(@idea.created_at) %> ago.</p>
+		<h3><%= @idea.description %></h3>
+		<p>Estimated release date: <%= @idea.estimated_date %></p>
+		<p>Goal amount: $<%= @idea.goal_amount %></p>
+	</div>
+	<p> </p>
+	<h3> Funding </h3>
+	<label for="cost1">How much do you want to fund?</label>
+	<input type="cost" class="form-control" id="cost1" aria-describedby="emailHelp" placeholder="Enter amount"><a class="btn btn-primary m-1"  role="button">Fund this project!</a>
+	<p>Category: <%= @idea.category.name %></p>
 
-<%= render 'messages/form' %>
+	<h3> Promises </h3>
+	<%= image_tag('images.jpeg' , width: '150px')%>
+
+
+	<h3>Comments</h3>
+	<%= render @idea.messages %>
+
+	<%= render 'messages/form' %>
 
 </div>
