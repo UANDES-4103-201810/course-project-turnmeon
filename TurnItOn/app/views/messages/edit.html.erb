@@ -1,7 +1,8 @@
-<div class="container">
+
 <h1>Edit Comment</h1>
+<hr>
 <%= simple_form_for([@idea, @message]) do |f| %>
 	<%= f.input :content, label: "Comment" %>
 	<%= f.button :submit %>
 <% end %>
-</div>
+

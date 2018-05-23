@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TurnItOn</title>
+    <title>Turn It On!</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -25,10 +25,13 @@
 						<% end %>
 					</ul>
 				</li>
-				<li><%= link_to "About Us", aboutus_path %> </li>
 				<% if user_signed_in? %>
 					<li><%= link_to "New Idea", new_idea_path %></li>
-				<% end %>	
+				<% end %>
+				<% if current_user.try(:admin?) %>
+					<li><%= link_to "Admin", rails_admin_path %></li>
+				<% end %>
+				<li><%= link_to "About Us", aboutus_path %> </li>	
 			</ul>	
 			<ul class="nav navbar-nav navbar-right">
 				<% if user_signed_in? %>

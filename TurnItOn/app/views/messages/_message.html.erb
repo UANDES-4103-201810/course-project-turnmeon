@@ -1,7 +1,8 @@
+<hr>
 <h4><%= message.content %></h4>
 <p>Posted by <%= message.user.email %> <%= time_ago_in_words(message.created_at) %> ago.</p>
 <% if user_signed_in? %>
-	<% if message.user_id == current_user.id or current_user.email == "admin@hotmail.com" %>
+	<% if message.user_id == current_user.id or current_user.try(:admin?) %>
 		<%= link_to "Edit", edit_idea_message_path(message.idea, message), class: "btn btn-default"  %>
 		<%= link_to "Delete", idea_message_path(message.idea, message), class: "btn btn-default", method: :delete, data: { confirm: "Delete this comment?" } %>
 	<% end %>

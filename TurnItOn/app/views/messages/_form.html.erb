@@ -1,8 +1,7 @@
-<div class="container">
 <%= simple_form_for([@idea, @idea.messages.build]) do |f| %>
 	
 	<%= f.input :content, label: "Comment" %>
 	<%= f.button :submit %>
 
 <% end %>
-</div>
+

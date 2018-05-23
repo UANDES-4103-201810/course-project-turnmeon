@@ -1,5 +1,5 @@
-<div class="container">
 <h1>Edit Idea</h1>
+<hr>
 
 <%= simple_form_for @idea, :html => { :multipart => true } do |f| %>
 	<%= f.select :category_id, @categories %>
@@ -10,4 +10,3 @@
 	<%= f.input :goal_amount %>
 	<%= f.button :submit %>
 <% end %>
-</div>
