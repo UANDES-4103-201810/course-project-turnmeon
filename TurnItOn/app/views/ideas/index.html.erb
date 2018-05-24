@@ -15,7 +15,7 @@
 				<a href="/ideas/<%= idea.id %>">
 					<%= image_tag idea.idea_image.url(:idea_index)%>
 				</a>
-				<p>Created by <%= idea.user.email  %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
+				<p>Created by <%= link_to idea.user.email, user_path(idea.user.id) %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
 			
 				<%#= link_to "View Idea", idea_path(idea), class: "btn btn-default" %>
 				<% if user_signed_in? %>
