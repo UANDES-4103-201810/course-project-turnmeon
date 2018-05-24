@@ -1,6 +1,7 @@
 class IdeasController < ApplicationController
 	before_action :find_idea, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, except: [:index, :show, :aboutus]
+	before_action :require_user, only: [:edit, :update, :destroy]
 	
 	def show
 	end
@@ -63,5 +64,9 @@ class IdeasController < ApplicationController
 		
 		def find_idea
 			@idea = Idea.find(params[:id])
+		end
+		
+		def require_user
+			redirect_to root_path unless current_user == @idea.user
 		end
 end
