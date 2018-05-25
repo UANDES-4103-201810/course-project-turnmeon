@@ -32,7 +32,7 @@ class IdeasController < ApplicationController
 		@idea = current_user.ideas.build(idea_params)
 		@idea.category_id = params[:category_id]
 	 	if @idea.save
-			redirect_to root_path
+			redirect_to root_path, notice: 'Your Idea has been created!'
 		else
 			render 'new'
 		end
@@ -44,7 +44,7 @@ class IdeasController < ApplicationController
 
 	def update
 		if @idea.update(idea_params)
-			redirect_to idea_path
+			redirect_to idea_path, notice: 'Your Idea has been updated!'
 		else
 			render 'edit'
 		end
@@ -52,7 +52,7 @@ class IdeasController < ApplicationController
 
 	def destroy
 		@idea.destroy
-		redirect_to root_path
+		redirect_to root_path, notice: 'Your Idea has been deleted!'
 	end
 	
 
@@ -67,6 +67,6 @@ class IdeasController < ApplicationController
 		end
 		
 		def require_user
-			redirect_to root_path unless current_user == @idea.user or current_user.admin?
+			redirect_to root_path, notice: 'You shall not pass!' unless current_user == @idea.user or current_user.admin?
 		end
 end

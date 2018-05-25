@@ -13,7 +13,7 @@ class PromisesController < ApplicationController
 		@promise.user_id = current_user.id
 
 		if @promise.save
-			redirect_to idea_path(@idea)
+			redirect_to idea_path(@idea), notice: 'Your promise has been created!'
 		else 
 			render 'new'
 		end
@@ -29,7 +29,7 @@ class PromisesController < ApplicationController
 
 	def update
 		if @promise.update(promise_params)
-			redirect_to idea_path(@idea)
+			redirect_to idea_path(@idea), notice: 'Your promise has been updated!'
 		else
 			render 'edit'
 		end
@@ -37,7 +37,7 @@ class PromisesController < ApplicationController
 
 	def destroy
 		@promise.destroy
-		redirect_to idea_path(@idea)
+		redirect_to idea_path(@idea), notice: 'Your promise has been deleted!'
 	end
 
 	private
@@ -55,7 +55,7 @@ class PromisesController < ApplicationController
 		end
 		
 		def require_user
-			redirect_to root_path unless current_user == @idea.user or current_user.admin?
+			redirect_to root_path, notice: 'You shall not pass!' unless current_user == @idea.user or current_user.admin?
 		end
 
 	

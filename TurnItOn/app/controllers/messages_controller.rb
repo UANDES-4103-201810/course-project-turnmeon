@@ -2,13 +2,14 @@ class MessagesController < ApplicationController
 	before_action :find_idea
 	before_action :find_message, only: [:edit, :update, :destroy]
 	before_action :authenticate_user!
+	before_action :require_user, only: [:edit, :update, :destroy]
+
 	def create
 		@message = @idea.messages.create(message_params)
 		@message.user_id = current_user.id
 
-#posible error
 		if @message.save
-			redirect_to idea_path(@idea)
+			redirect_to idea_path(@idea), notice: 'Your message has been created!'
 		else
 			render 'new'
 		end
@@ -19,7 +20,7 @@ class MessagesController < ApplicationController
 
 	def update
 		if @message.update(message_params)
-			redirect_to idea_path(@idea)
+			redirect_to idea_path(@idea), notice: 'Your message has been updated!'
 		else
 			render 'edit'
 		end
@@ -27,7 +28,7 @@ class MessagesController < ApplicationController
 	
 	def destroy
 		@message.destroy
-		redirect_to idea_path(@idea)
+		redirect_to idea_path(@idea), notice: 'Your message has been deleted!'
 
 	end
 
@@ -41,5 +42,8 @@ class MessagesController < ApplicationController
 		end
 		def find_message
 			@message = @idea.messages.find(params[:id])
+		end
+		def require_user
+			redirect_to root_path, notice: 'You shall not pass!' unless current_user == @message.user or current_user.admin?
 		end
 end
