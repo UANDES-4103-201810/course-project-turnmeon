@@ -16,3 +16,11 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+
+$(document).ready(function(){
+	setTimeout(function(){
+		$('#notice_wrapper').fadeOut("slow",function(){
+			$(this).remove();
+		});
+	}, 3000);
+});

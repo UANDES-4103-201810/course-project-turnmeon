@@ -17,8 +17,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/*.Idea{
-	height: 350px;
-	width: 250px
+#notice_wrapper {
+	position: absolute;
+	top: 100;
+	width: 100%;
+	z-index: 100;
+	background: rgba(255, 255, 255, 0.55);
+	.alert, .notice{
+		padding: 2.5rem 0;
+		text-align: center;
+		margin: 0;
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #000000;
+		letter-spacing: 2px;
+
+	}
+
 }
-*/
