@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-	before_action :find_idea, only: [:show, :edit, :update, :destroy]
+	before_action :find_idea, only: [:show, :edit, :update, :destroy, :favourite]
 	before_action :authenticate_user!, except: [:index, :show, :aboutus]
 	before_action :require_user, only: [:edit, :update, :destroy]
 	
@@ -53,6 +53,11 @@ class IdeasController < ApplicationController
 	def destroy
 		@idea.destroy
 		redirect_to root_path, notice: 'Your Idea has been deleted!'
+	end
+	
+	def favourite
+		current_user.favourite_ideas.manage(@idea)
+		redirect_to root_path
 	end
 	
 

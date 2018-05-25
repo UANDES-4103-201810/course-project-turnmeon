@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	resources :ideas do
 		resources :messages
 		resources :promises
+		get :favourite, on: :member
 	end
 	get '/aboutus', to: 'ideas#aboutus'
 	root 'ideas#index'
