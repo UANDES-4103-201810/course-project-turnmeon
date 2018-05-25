@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180525163906) do
+ActiveRecord::Schema.define(version: 20180525183758) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180525163906) do
     t.string "idea_image_content_type"
     t.integer "idea_image_file_size"
     t.datetime "idea_image_updated_at"
+    t.boolean "outstanding"
   end
 
   create_table "messages", force: :cascade do |t|
