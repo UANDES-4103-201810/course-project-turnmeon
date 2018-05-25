@@ -1,0 +1,7 @@
+<%= simple_form_for ([@idea, @idea.promises.build]) do |f| %>
+	<%= f.input :title, label: "Promise title" %>
+	<%= f.input :description %>
+	<%= f.input :cost %>
+	<%= f.button :submit %>
+
+<% end %>

@@ -1,0 +1,11 @@
+<h4><%= promise.title %></h4>
+<p>$ <%= promise.cost %> USD</p>
+<h5><%= promise.description %></h5>
+<a class="btn btn-primary m-1"  role="button">Buy this promise!</a>
+<% if user_signed_in? %>
+			<% if @idea.user_id == current_user.id or current_user.try(:admin?)%>
+				<%= link_to "Edit", edit_idea_promise_path(promise.idea, promise), class: "btn btn-default" %>
+				<%= link_to "Delete", idea_promise_path(promise.idea, promise), class: "btn btn-default" , method: :delete, data: { confirm: "Are you sure?" } %>
+			<% end %>
+<% end %>
+<hr>

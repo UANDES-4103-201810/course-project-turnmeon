@@ -1,0 +1,6 @@
+<h4><%= promise.title %></h4>
+<hr>
+<p><%= promise.description %></p>
+<p><%= promise.cost %></p>
+<%= link_to "Edit", edit_idea_promise_path(promise.idea, promise) %>
+<%= link_to "Delete", idea_promise_path(promise.idea, promise), method: :delete, data: { confirm: "Are you sure?" } %>

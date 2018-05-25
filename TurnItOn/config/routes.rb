@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 	resources :users
 	resources :ideas do
 		resources :messages
+		resources :promises
 	end
-	get '/profile', to: 'ideas#profile'
 	get '/aboutus', to: 'ideas#aboutus'
 	root 'ideas#index'
 

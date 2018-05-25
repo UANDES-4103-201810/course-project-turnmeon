@@ -1,0 +1,8 @@
+<h1> Edit Promise </h1>
+<hr>
+<%= simple_form_for([@idea, @promise]) do |f|%>
+	<%= f.input :title, lable: "Promise title" %>
+	<%= f.input :description %>
+	<%= f.input :cost %>
+	<%= f.button :submit %>
+<% end %>
