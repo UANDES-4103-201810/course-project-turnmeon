@@ -67,6 +67,6 @@ class IdeasController < ApplicationController
 		end
 		
 		def require_user
-			redirect_to root_path unless current_user == @idea.user
+			redirect_to root_path unless current_user == @idea.user or current_user.admin?
 		end
 end

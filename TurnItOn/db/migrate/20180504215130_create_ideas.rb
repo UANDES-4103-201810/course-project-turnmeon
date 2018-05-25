@@ -5,7 +5,6 @@ class CreateIdeas < ActiveRecord::Migration[5.1]
       t.text :description
       t.date :estimated_date
       t.integer :goal_amount
-      t.string :category
 
       t.timestamps
     end
