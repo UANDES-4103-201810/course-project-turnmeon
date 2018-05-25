@@ -2,10 +2,12 @@
 	<h1><%= @idea.title %></h1>
 	<p>Created by <%= link_to @idea.user.email, user_path(@idea.user.id) %> <%= time_ago_in_words(@idea.created_at) %> ago.</p>
 	<% if user_signed_in? %>
-			<% if @idea.user_id == current_user.id or current_user.try(:admin?)%>
-				<%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-default" %>
-				<%= link_to "Delete", idea_path(@idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
-			<% end %>
+		<%= link_to "Like", favourite_idea_path(@idea), class: "btn btn-default" %>
+			
+		<% if @idea.user_id == current_user.id or current_user.try(:admin?)%>
+			<%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-default" %>
+			<%= link_to "Delete", idea_path(@idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+		<% end %>
 	<% end %>
 	<hr>
 	<div class="col-md-6">

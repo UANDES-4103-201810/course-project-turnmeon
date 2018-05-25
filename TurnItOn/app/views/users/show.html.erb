@@ -14,7 +14,9 @@
 
 <hr>
 
+
 <h3><%= @user.first_name %>'s Ideas:</h3>
+<div class="row">
 <% @user_ideas.each do |idea| %>
 	<div class="col-md-3">
 		<% if user_signed_in? %>
@@ -29,12 +31,43 @@
 			<% end %>
 			
 		<% else %>
-				<h4><%= link_to idea.title, idea_path(idea) %></h4>
-				<a href="/ideas/<%= idea.id %>">
-					<%= image_tag idea.idea_image.url(:idea_index)%>
-				</a>
-				<p>Created by <%= @user.first_name %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
+			<h4><%= link_to idea.title, idea_path(idea) %></h4>
+			<a href="/ideas/<%= idea.id %>">
+				<%= image_tag idea.idea_image.url(:idea_index)%>
+			</a>
+			<p>Created by <%= @user.first_name %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
 		<% end %>
 	</div>
 <% end %>
+</div>
 
+<hr>
+
+<h3><%= @user.first_name %>'s Wishlist:</h3>
+<div class="row">
+	<% Idea.all.each do |idea| %>
+		<div class="col-md-4">
+			<% @user.favourite_ideas.each do |k| %>
+				<% if k.idea_id == idea.id%>
+				<% if idea.try(:outstanding?)%>
+					<h2>★ <%= link_to idea.title, idea_path(idea) %></h2>
+				<% else %>
+					<h3> <%= link_to idea.title, idea_path(idea) %></h3>
+				<% end %>
+				<a href="/ideas/<%= idea.id %>">
+					<%= image_tag idea.idea_image.url(:idea_index)%>
+				</a>
+				<p>Created by <%= link_to idea.user.email, user_path(idea.user.id) %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
+
+				<% if user_signed_in? %>
+										
+					<% if idea.user_id == current_user.id or current_user.try(:admin?)%>
+						<%= link_to "Edit", edit_idea_path(idea), class: "btn btn-default" %>
+						<%= link_to "Delete", idea_path(idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+					<% end %>
+				<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
