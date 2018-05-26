@@ -17,10 +17,14 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 
-$(document).ready(function(){
+$(document).on('ready page:load',function(){
 	setTimeout(function(){
 		$('#notice_wrapper').fadeOut("slow",function(){
 			$(this).remove();
 		});
 	}, 3000);
+});
+
+$('#flash_wrapper').hide();
+	$('#flash_wrapper').fadeIn("slow",function(){
 });

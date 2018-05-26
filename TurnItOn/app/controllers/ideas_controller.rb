@@ -57,7 +57,7 @@ class IdeasController < ApplicationController
 	
 	def favourite
 		current_user.favourite_ideas.manage(@idea)
-		redirect_to idea_path, notice: 'You liked this idea!'
+		redirect_back fallback_location: root_path
 	end
 	
 
