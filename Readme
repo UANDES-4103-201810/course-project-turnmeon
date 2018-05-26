@@ -1,10 +1,13 @@
 Francisco Basualdo B
 José Tomás Silva R.
 
+--> REMEMBER TO RUN:  $ RAKE DB:SEED
+>> by default admin user: admin@admin.com (password: admin123)
+
 To do list:
-Funding..
-Add images to promises..
-Add more images to each idea..
-Add videos to ideas..
-Fix favourite ideas design..
+-Funding..
+-Add images to promises..
+-Add more images to each idea..
+-Add videos to ideas..
+-Fix favourite ideas design..
 
