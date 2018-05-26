@@ -4,6 +4,8 @@ José Tomás Silva R.
 --> REMEMBER TO RUN:  $ RAKE DB:SEED
 >> by default admin user: admin@admin.com (password: admin123)
 
+All users, except admin user, have the same password, which is: clave123
+
 To do list:
 -Funding..
 -Add images to promises..
