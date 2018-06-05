@@ -28,7 +28,13 @@
 				<p>Created by you <%= time_ago_in_words(idea.created_at) %> ago.</p>
 				<%= link_to "Edit", edit_idea_path(idea), class: "btn btn-default" %>
 				<%= link_to "Delete", idea_path(idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
-			<% end %>
+			<% else %>
+				<h4><%= link_to idea.title, idea_path(idea) %></h4>
+				<a href="/ideas/<%= idea.id %>">
+					<%= image_tag idea.idea_image.url(:idea_index)%>
+				</a>
+				<p>Created by <%= @user.first_name %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
+			<% end %>	
 			
 		<% else %>
 			<h4><%= link_to idea.title, idea_path(idea) %></h4>
