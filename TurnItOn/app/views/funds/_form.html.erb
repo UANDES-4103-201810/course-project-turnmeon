@@ -1,0 +1,7 @@
+<%= simple_form_for([@idea, @idea.funds.build]) do |f| %>
+	
+	<%= f.input :amount, label: "Amount ($USD)" %>
+	<%= f.button :submit %>
+
+<% end %>
+

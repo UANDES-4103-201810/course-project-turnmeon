@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	devise_for :users
 	resources :users
 	resources :ideas do
+		resources :funds
 		resources :messages
 		resources :promises
 		get :favourite, on: :member
