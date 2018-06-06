@@ -10,6 +10,7 @@ class IdeasController < ApplicationController
 	end
 
 	def index
+		
 		if params[:category].blank?			
 			@ideas = Idea.all.order("created_at DESC")
 		else
