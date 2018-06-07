@@ -17,34 +17,49 @@
 
 <h3><%= @user.first_name %>'s Ideas:</h3>
 <div class="row">
-<% @user_ideas.each do |idea| %>
-	<div class="col-md-3">
-		<% if user_signed_in? %>
-			<% if idea.user_id == current_user.id%>
-				<h4><%= link_to idea.title, idea_path(idea) %></h4>
-				<a href="/ideas/<%= idea.id %>">
-					<%= image_tag idea.idea_image.url(:idea_index)%>
-				</a>
-				<p>Created by you <%= time_ago_in_words(idea.created_at) %> ago.</p>
-				<%= link_to "Edit", edit_idea_path(idea), class: "btn btn-default" %>
-				<%= link_to "Delete", idea_path(idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
-			<% else %>
-				<h4><%= link_to idea.title, idea_path(idea) %></h4>
-				<a href="/ideas/<%= idea.id %>">
-					<%= image_tag idea.idea_image.url(:idea_index)%>
-				</a>
-				<p>Created by <%= @user.first_name %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
-			<% end %>	
+	<% @user_ideas.each do |idea| %>
+		<div class="col-md-3" align="center">
+			<% if user_signed_in? %>
+				<% if idea.user_id == current_user.id%>
+					<% if idea.try(:outstanding?)%>
+						<h2 align="center">★<%= link_to idea.title, idea_path(idea) %>★</h2>
+					<% else %>
+						<h3 align="center"> <%= link_to idea.title, idea_path(idea) %></h3>
+					<% end %>
+					<p> <b><%= idea.category.name%> | <%= 100*idea.funded/idea.goal_amount %>% funded</b></p>
+					<a href="/ideas/<%= idea.id %>">
+						<%= image_tag idea.idea_image.url(:idea_index)%>
+					</a>
+					<p>Created by you <%= time_ago_in_words(idea.created_at) %> ago.</p>
+					<%= link_to "Edit", edit_idea_path(idea), class: "btn btn-default" %>
+					<%= link_to "Delete", idea_path(idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+				<% else %>
+					<% if idea.try(:outstanding?)%>
+						<h2 align="center">★<%= link_to idea.title, idea_path(idea) %>★</h2>
+					<% else %>
+						<h3 align="center"> <%= link_to idea.title, idea_path(idea) %></h3>
+					<% end %>
+					<p> <b><%= idea.category.name%> | <%= 100*idea.funded/idea.goal_amount %>% funded</b></p>
+					<a href="/ideas/<%= idea.id %>"><%= image_tag idea.idea_image.url(:idea_index)%></a>
+					<p>Created by <%= @user.first_name %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
+					<%= link_to favourite_idea_path(idea), class: favourite_idea(idea) do %>
+						<span class= "glyphicon glyphicon-ok"></span>
+						<span>Wishlist</span>
+					<% end %>
+				<% end %>	
 			
-		<% else %>
-			<h4><%= link_to idea.title, idea_path(idea) %></h4>
-			<a href="/ideas/<%= idea.id %>">
-				<%= image_tag idea.idea_image.url(:idea_index)%>
-			</a>
-			<p>Created by <%= @user.first_name %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
-		<% end %>
-	</div>
-<% end %>
+			<% else %>
+				<% if idea.try(:outstanding?)%>
+					<h2 align="center">★<%= link_to idea.title, idea_path(idea) %>★</h2>
+				<% else %>
+					<h3 align="center"> <%= link_to idea.title, idea_path(idea) %></h3>
+				<% end %>
+				<p> <b><%= idea.category.name%> | <%= 100*idea.funded/idea.goal_amount %>% funded</b></p>
+				<a href="/ideas/<%= idea.id %>"><%= image_tag idea.idea_image.url(:idea_index)%></a>
+				<p>Created by <%= @user.first_name %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
+			<% end %>
+		</div>
+	<% end %>
 </div>
 
 <hr>
@@ -55,22 +70,30 @@
 		<div class="col-md-3">
 			<% Idea.all.each do |idea| %>
 				<% if k.idea_id == idea.id%>
+
 					<% if idea.try(:outstanding?)%>
-						<h3>★ <%= link_to idea.title, idea_path(idea) %></h3>
+						<h2 align="center">★<%= link_to idea.title, idea_path(idea) %>★</h2>
 					<% else %>
-						<h4> <%= link_to idea.title, idea_path(idea) %></h4>
+						<h3 align="center"> <%= link_to idea.title, idea_path(idea) %></h3>
 					<% end %>
-					<a href="/ideas/<%= idea.id %>">
-						<%= image_tag idea.idea_image.url(:idea_index)%>
-					</a>
-					<p>Created by <%= link_to idea.user.email, user_path(idea.user.id) %> <%= time_ago_in_words(idea.created_at) %> ago.</p>
+					<div align="center">
+					<p> <b><%= idea.category.name%> | <%= 100*idea.funded/idea.goal_amount %>% funded</b></p>
+					<a href="/ideas/<%= idea.id %>"><%= image_tag idea.idea_image.url(:idea_index)%></a>
+					<p align="center">Created by <%= link_to idea.user.email, user_path(idea.user.id) %> <%= time_ago_in_words(idea.created_at) %> ago.</p>	
 					<% if user_signed_in? %>
-										
+						<%= link_to favourite_idea_path(idea), class: favourite_idea(idea) do %>
+							<span class= "glyphicon glyphicon-ok"></span>
+							<span>Wishlist</span>
+						<% end %>
+												
 						<% if idea.user_id == current_user.id or current_user.try(:admin?)%>
 							<%= link_to "Edit", edit_idea_path(idea), class: "btn btn-default" %>
 							<%= link_to "Delete", idea_path(idea), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
 						<% end %>
 					<% end %>
+					
+					
+					</div>
 				<% end %>
 			<% end %>
 		</div>
