@@ -1,5 +1,4 @@
-<hr>
-<h4><%= message.content %></h4>
+<h4 align="justify"><%= message.content %></h4>
 <p>Posted by <%= link_to message.user.email, user_path(message.user.id) %> <%= time_ago_in_words(message.created_at) %> ago.</p>
 <% if user_signed_in? %>
 	<% if message.user_id == current_user.id or current_user.try(:admin?) %>
@@ -7,4 +6,5 @@
 		<%= link_to "Delete", idea_message_path(message.idea, message), class: "btn btn-default", method: :delete, data: { confirm: "Delete this comment?" } %>
 	<% end %>
 <% end %>
+<hr>
 

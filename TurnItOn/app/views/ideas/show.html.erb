@@ -12,15 +12,17 @@
 		<% end %>
 	<% end %>
 	<hr>
-	<div class="col-md-6">
+	<div class="col-md-5">
 		<%= image_tag @idea.idea_image.url(:idea_show) %>
+		<hr>
 		<h3> Description:</h3>
-		<p><%= @idea.description %></p>
-		<h5>Category: <%= @idea.category.name %></h5>
-		<h5>Estimated release date: <%= @idea.estimated_date %></h5>
-		<h5>Goal amount: $<%= @idea.goal_amount %></h5>
+		<p align="justify"><%= @idea.description %></p>
+		<br>
+		<h5><b>Category:</b> <%= @idea.category.name %></h5>
+		<h5><b>Estimated release date:</b> <%= @idea.estimated_date %></h5>
+		<h5><b>Goal amount:</b> $<%= @idea.goal_amount %></h5>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-7">
 		<h3> Funding: </h3>
 		<%= render 'funds/form' %>
 		<%= render @idea.funds %>
@@ -31,15 +33,20 @@
 					<%= link_to "New", new_idea_promise_path(@idea), class: "btn btn-default" %>
 				<% end %>
 		<% end %>
+		<% if @idea.promises.count == 0 %>
+			<h4> There are not promises available! </h4>
+			<hr>
+		<% end %>
 		<%= render @idea.promises %>
 	</div>
 </div>
 <hr>
 <h3>Comments:</h3>
+<br>
 <% if @idea.messages.count == 0 %>
 <h4> Be the first to comment this Idea! </h4>
+<hr>
 <% end %>
 <%= render @idea.messages %>
-<hr>
 <%= render 'messages/form' %>
 

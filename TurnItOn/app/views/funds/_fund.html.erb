@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 	<% if fund.user_id == current_user.id %>
 		<hr>
-		<p> You have funded USD$<%= fund.amount %> <%= time_ago_in_words(fund.created_at)%> ago.</p>
+		<p> You have funded <b>USD $<%= fund.amount %></b> <%= time_ago_in_words(fund.created_at)%> ago.</p>
 		<%= link_to "Undo this funding", idea_fund_path(fund.idea, fund), class: "btn btn-default", method: :delete, data: { confirm: "Undo this funding? :("} %>
 	<% end %>
 <%end%>

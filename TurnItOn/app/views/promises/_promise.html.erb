@@ -1,6 +1,6 @@
-<h4><%= promise.title %></h4>
-<p>$ <%= promise.cost %> USD</p>
-<h5><%= promise.description %></h5>
+<h4><b><%= promise.title %></b></h4>
+<p><b>Cost: $<%= promise.cost %> USD</b></p>
+<p align="justify"><%= promise.description %></p>
 <a class="btn btn-primary m-1"  role="button">Buy this promise!</a>
 <% if user_signed_in? %>
 			<% if @idea.user_id == current_user.id or current_user.try(:admin?)%>
