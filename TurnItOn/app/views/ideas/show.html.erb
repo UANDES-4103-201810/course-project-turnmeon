@@ -4,6 +4,7 @@
 	<% if user_signed_in? %>
 		<%= link_to favourite_idea_path(@idea), class: favourite_idea(@idea) do %>
 			<span class= "glyphicon glyphicon-ok"></span>
+			<span>Wishlist</span>
 		<% end %>
 			
 		<% if @idea.user_id == current_user.id or current_user.try(:admin?)%>
@@ -21,9 +22,42 @@
 		<h5><b>Category:</b> <%= @idea.category.name %></h5>
 		<h5><b>Estimated release date:</b> <%= @idea.estimated_date %></h5>
 		<h5><b>Goal amount:</b> $<%= @idea.goal_amount %></h5>
+		<h5><b>Funded:</b> $<%= @idea.funded %></h5>
 	</div>
 	<div class="col-md-7">
 		<h3> Funding: </h3>
+			<% if 100*@idea.funded/@idea.goal_amount < 5 %>
+				<div class="progress">
+				  <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+				  aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: <%=100*@idea.funded/@idea.goal_amount %>%">
+				  </div>
+				  <p> <%= 100*@idea.funded/@idea.goal_amount %>% funded! </p>
+				</div>
+			<% end %>
+			<% if 100*@idea.funded/@idea.goal_amount >= 5 and 100*@idea.funded/@idea.goal_amount < 50 %>
+				<div class="progress">
+				  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+				  aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: <%=100*@idea.funded/@idea.goal_amount %>%">
+				 	<p> <%= 100*@idea.funded/@idea.goal_amount %>% funded! </p>
+				  </div>
+				</div>
+			<% end %>
+			<% if 100*@idea.funded/@idea.goal_amount >= 50 and 100*@idea.funded/@idea.goal_amount < 100 %>
+				<div class="progress">
+				  <div class="progress-bar progress-bar-striped active" role="progressbar"
+				  aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: <%=100*@idea.funded/@idea.goal_amount %>%">
+				 	<p> <%= 100*@idea.funded/@idea.goal_amount %>% funded! </p>
+				  </div>
+				</div>
+			<% end %>
+			<% if 100*@idea.funded/@idea.goal_amount >= 100 %>
+								<div class="progress">
+				  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+				  aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+				 	<p> <%= 100*@idea.funded/@idea.goal_amount %>% funded! </p>
+				  </div>
+				</div>
+			<% end %>
 		<%= render 'funds/form' %>
 		<%= render @idea.funds %>
 		<hr>

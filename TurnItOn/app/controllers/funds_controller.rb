@@ -9,6 +9,8 @@ class FundsController < ApplicationController
 		@fund.user_id = current_user.id
 
 		if @fund.save
+			@idea.funded += @fund.amount
+			@idea.save
 			redirect_to idea_path(@idea), notice: 'You have funded this idea succesfully!'
 		else
 			render 'new'
@@ -17,7 +19,10 @@ class FundsController < ApplicationController
 	
 	
 	def destroy
+		@idea.funded -= @fund.amount
+		@idea.save
 		@fund.destroy
+		
 		redirect_to idea_path(@idea), notice: 'You have undone your funding! :('
 
 	end

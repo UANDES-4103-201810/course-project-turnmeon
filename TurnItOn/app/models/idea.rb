@@ -8,4 +8,5 @@ class Idea < ApplicationRecord
 	validates_attachment_content_type :idea_image, :content_type => /\Aimage\/.*\z/
 
 	
+	
 end

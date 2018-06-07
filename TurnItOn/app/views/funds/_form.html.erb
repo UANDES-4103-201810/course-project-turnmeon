@@ -1,6 +1,6 @@
 <%= simple_form_for([@idea, @idea.funds.build]) do |f| %>
 	
-	<%= f.input :amount, label: "Amount: ", placeholder: "$USD" %>
+	<%= f.input :amount, label: "Fund this Idea: ", placeholder: "$USD" %>
 	<%= f.submit "Fund this idea!", class: "btn btn-default" %>
 
 <% end %>
