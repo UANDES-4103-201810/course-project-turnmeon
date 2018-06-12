@@ -13,7 +13,8 @@ class FundsController < ApplicationController
 			@idea.save
 			redirect_to idea_path(@idea), notice: 'You have funded this idea succesfully!'
 		else
-			render 'new'
+			redirect_to idea_path(@idea), notice: 'Your funding must be at least 1 dollar!'
+
 		end
 	end
 	
